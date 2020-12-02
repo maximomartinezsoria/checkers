@@ -1,9 +1,9 @@
 import pygame
-from .config import RED, WHITE, SQUARE_SIZE, GREY
+from .config import RED, WHITE, SQUARE_SIZE, GREY, CROWN
 
 
 class Piece():
-    PADDING = 20
+    PADDING = 10
     OUTLINE = 2
 
     def __init__(self, row, col, color):
@@ -11,8 +11,6 @@ class Piece():
         self.col = col
         self.color = color
         self.king = False
-
-        self.direction = -1 if self.color == RED else 1
 
         self.x = 0
         self.y = 0
@@ -27,11 +25,17 @@ class Piece():
 
     def draw(self, win):
         radius = SQUARE_SIZE // 2 - self.PADDING
-        pygame.draw.circle(win,
-                           GREY,
-                           (self.x, self.y),
-                           radius + self.OUTLINE)
+        pygame.draw.circle(win, GREY, (self.x, self.y), radius + self.OUTLINE)
         pygame.draw.circle(win, self.color, (self.x, self.y), radius)
+
+        if self.king:
+            x_pos = self.x - CROWN.get_width() // 2
+            y_pos = self.y - CROWN.get_height() // 2
+            win.blit(CROWN, (x_pos, y_pos))
+
+    def move(self, row, col):
+        self.row, self.col = row, col
+        self.calc_pos()
 
     def __repr__(self):
         return str(self.color)
