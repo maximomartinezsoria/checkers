@@ -1,7 +1,8 @@
 import pygame
-from checkers.config import WIDTH, HEIGHT, SQUARE_SIZE, RED
+from checkers.config import WIDTH, HEIGHT, SQUARE_SIZE, RED, WHITE
 from checkers.game import Game
 from helpers import get_row_col_from_mouse
+from minimax.algorithm import minimax
 
 FPS = 60
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -16,9 +17,14 @@ def main():
     while run:
         clock.tick(FPS)
 
+        if game.turn == WHITE:
+            value, new_board = minimax(game.get_board(), 3, WHITE, game)
+            game.ai_move(new_board)
+
         winner = game.winner()
         if winner != None:
             print(winner)
+            run = False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
