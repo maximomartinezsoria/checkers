@@ -2,6 +2,8 @@
 
 Checkers game with AI implemented with the minimax algorithm. Can you beat it?
 
+![checkers image](checkers.png 'Checkers')
+
 ## Installation and usage
 
 1. Create a Python virtual environment and activate it.
