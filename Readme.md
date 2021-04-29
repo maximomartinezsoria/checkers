@@ -1,6 +1,6 @@
 # Checkers with AI
 
-Checkers game with AI implemented with the minimax algorithm. Can you beat it?
+Checkers game with AI implemented with minimax algorithm. Can you beat it?
 
 ![checkers image](checkers.png 'Checkers')
 
